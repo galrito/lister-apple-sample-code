@@ -45,8 +45,8 @@ NSString *const AAPLListEncodingColorKey = @"color";
 
 #pragma mark - NSCoding
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [self init];
     
     if (self) {
         _items = [[aDecoder decodeObjectForKey:AAPLListEncodingItemsKey] mutableCopy];

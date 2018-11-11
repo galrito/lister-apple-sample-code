@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, AAPLTodayWidgetRowPurpose) {
 
 @interface AAPLTodayWidgetRowPurposeBox : NSObject
 
-- (instancetype)initWithPurpose:(AAPLTodayWidgetRowPurpose)purpose userInfo:(id)userInfo;
+- (instancetype)initWithPurpose:(AAPLTodayWidgetRowPurpose)purpose userInfo:(id)userInfo NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic) AAPLTodayWidgetRowPurpose purpose;
 @property (nonatomic, strong) id userInfo;

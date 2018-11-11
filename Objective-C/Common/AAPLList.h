@@ -55,7 +55,7 @@ typedef struct AAPLListOperationInfo {
  * The items that represent the underlying list. The \c AAPLList class copies the items in
  * initialization.
  */
-- (instancetype)initWithColor:(AAPLListColor)color items:(NSArray *)items;
+- (instancetype)initWithColor:(AAPLListColor)color items:(NSArray *)items NS_DESIGNATED_INITIALIZER;
 
 /*!
  * Initializes an \c AAPLList instance with a default color of gray and an empty items array.
