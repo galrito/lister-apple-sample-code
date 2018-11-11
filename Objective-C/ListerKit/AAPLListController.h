@@ -125,7 +125,7 @@
  * @param sortComparator The predicate that determines the strict sort ordering of the \c AAPLlistInfos
  *                       array.
  */
-- (instancetype)initWithListCoordinator:(id<AAPLListCoordinator>)listCoordinator sortComparator:(NSComparisonResult (^)(AAPLListInfo *lhs, AAPLListInfo *rhs))sortComparator;
+- (instancetype)initWithListCoordinator:(id<AAPLListCoordinator>)listCoordinator sortComparator:(NSComparisonResult (^)(AAPLListInfo *lhs, AAPLListInfo *rhs))sortComparator NS_DESIGNATED_INITIALIZER;
 
 /*!
  * The \c AAPLListController object's delegate who is responsible for responding to \c AAPLListController

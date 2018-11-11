@@ -21,6 +21,7 @@
 
 @implementation AAPLListItemView
 @synthesize completed = _completed;
+@synthesize textField;
 
 #pragma mark - View Life Cycle
 

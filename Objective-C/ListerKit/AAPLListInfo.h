@@ -13,7 +13,7 @@
 
 @interface AAPLListInfo : NSObject
 
-- (instancetype)initWithURL:(NSURL *)URL;
+- (instancetype)initWithURL:(NSURL *)URL NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong, readonly) NSURL *URL;
 

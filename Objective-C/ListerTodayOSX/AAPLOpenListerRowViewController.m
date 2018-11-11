@@ -13,6 +13,8 @@
 
 @implementation AAPLOpenListerRowViewController
 
+@dynamic representedObject;
+
 #pragma mark - IBActions
 
 - (IBAction)openInLister:(NSButton *)sender {
