@@ -100,7 +100,7 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
         if let activityURL = activity.userInfo?[NSUserActivityDocumentURLKey] as? NSURL {
             let activityListInfo = ListInfo(URL: activityURL)
             
-            let rawListInfoColor = activity.userInfo![AppConfiguration.UserActivity.listColorUserInfoKey]! as Int
+            let rawListInfoColor = activity.userInfo![AppConfiguration.UserActivity.listColorUserInfoKey] as! Int
             
             activityListInfo.color = List.Color(rawValue: rawListInfoColor)
 
@@ -186,13 +186,13 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
         dispatch_async(dispatch_get_main_queue()) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             
-            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as ListCell
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! ListCell
             cell.label.text = listInfo.name
             
             listInfo.fetchInfoWithCompletionHandler {
                 dispatch_async(dispatch_get_main_queue()) {
                     // Make sure that the list info is still visible once the color has been fetched.
-                    let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() as [NSIndexPath]
+                    let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() as! [NSIndexPath]
 
                     if find(indexPathsForVisibleRows, indexPath) != nil {
                         cell.listColorView.backgroundColor = listInfo.color!.colorValue
@@ -244,7 +244,7 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(MainStoryboard.TableViewCellIdentifiers.listDocumentCell, forIndexPath: indexPath) as ListCell
+        return tableView.dequeueReusableCellWithIdentifier(MainStoryboard.TableViewCellIdentifiers.listDocumentCell, forIndexPath: indexPath) as! ListCell
     }
     
     // MARK: UITableViewDelegate
@@ -262,7 +262,7 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
                 listInfo.fetchInfoWithCompletionHandler {
                     dispatch_async(dispatch_get_main_queue()) {
                         // Make sure that the list info is still visible once the color has been fetched.
-                        let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() as [NSIndexPath]
+                        let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() as! [NSIndexPath]
                         
                         if find(indexPathsForVisibleRows, indexPath) != nil {
                             listCell.listColorView.backgroundColor = listInfo.color!.colorValue
@@ -286,13 +286,13 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == MainStoryboard.SegueIdentifiers.newListDocument {
-            let newListController = segue.destinationViewController as NewListDocumentController
+            let newListController = segue.destinationViewController as! NewListDocumentController
 
             newListController.listController = self.listController
         }
         else if segue.identifier == MainStoryboard.SegueIdentifiers.showListDocument || segue.identifier == MainStoryboard.SegueIdentifiers.showListDocumentFromUserActivity {
-            let listNavigationController = segue.destinationViewController as UINavigationController
-            let listViewController = listNavigationController.topViewController as ListViewController
+            let listNavigationController = segue.destinationViewController as! UINavigationController
+            let listViewController = listNavigationController.topViewController as! ListViewController
             listViewController.listController = listController
             
             listViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
@@ -303,7 +303,7 @@ class ListDocumentsViewController: UITableViewController, ListControllerDelegate
                 listViewController.configureWithListInfo(listController[indexPath.row])
             }
             else if segue.identifier == MainStoryboard.SegueIdentifiers.showListDocumentFromUserActivity {
-                let userActivityListInfo = sender as ListInfo
+                let userActivityListInfo = sender as! ListInfo
                 listViewController.configureWithListInfo(userActivityListInfo)
             }
         }

@@ -17,13 +17,13 @@ public class ListUtilities {
     // MARK: Properties
 
     @objc public class var localDocumentsDirectory: NSURL  {
-        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as NSURL
+        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as! NSURL
     }
     
     // MARK: List Handling Methods
     
     public class func copyInitialLists() {
-        let defaultListURLs = NSBundle.mainBundle().URLsForResourcesWithExtension(AppConfiguration.listerFileExtension, subdirectory: "") as [NSURL]
+        let defaultListURLs = NSBundle.mainBundle().URLsForResourcesWithExtension(AppConfiguration.listerFileExtension, subdirectory: "") as! [NSURL]
         
         for url in defaultListURLs {
             copyURLToDocumentsDirectory(url)

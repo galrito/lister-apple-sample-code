@@ -111,7 +111,7 @@ public class List: NSObject, NSCoding, NSCopying {
     public init(color: List.Color, items: [ListItem]) {
         self.color = color
         
-        _items = items.map { $0.copy() as ListItem }
+        _items = items.map { $0.copy() as! ListItem }
     }
 
     /// Initializes a `List` instance with a default color of gray and an empty items array.
@@ -122,7 +122,7 @@ public class List: NSObject, NSCoding, NSCopying {
     // MARK: NSCoding
     
     public required init(coder aDecoder: NSCoder) {
-        _items = aDecoder.decodeObjectForKey(SerializationKeys.items) as [ListItem]
+        _items = aDecoder.decodeObjectForKey(SerializationKeys.items) as! [ListItem]
         color = List.Color(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.color))!
     }
     

@@ -15,7 +15,7 @@ import Cocoa
     
     @IBInspectable public var tintColor: NSColor {
         get {
-            return NSColor(CGColor: checkBoxLayer.tintColor)
+            return NSColor(CGColor: checkBoxLayer.tintColor)!
         }
         set {
             checkBoxLayer.tintColor = newValue.CGColor
@@ -32,7 +32,7 @@ import Cocoa
     }
     
     private var checkBoxLayer: CheckBoxLayer {
-        return layer as CheckBoxLayer
+        return layer as! CheckBoxLayer
     }
     
     override public var intrinsicContentSize: NSSize {

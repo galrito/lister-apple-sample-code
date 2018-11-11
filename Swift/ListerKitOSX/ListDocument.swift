@@ -49,7 +49,7 @@ public class ListDocument: NSDocument {
         if makesCustomWindowControllers {
             let storyboard = NSStoryboard(name: "Storyboard", bundle: nil)!
             
-            let windowController = storyboard.instantiateInitialController() as NSWindowController
+            let windowController = storyboard.instantiateInitialController() as! NSWindowController
             
             addWindowController(windowController)
         }

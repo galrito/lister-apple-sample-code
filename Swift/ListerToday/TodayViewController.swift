@@ -153,7 +153,7 @@ class TodayViewController: UITableViewController, ListControllerDelegate, NCWidg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if !isCloudAvailable {
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel!.text = NSLocalizedString("Today requires iCloud", comment: "")
             
             return cell
@@ -161,14 +161,14 @@ class TodayViewController: UITableViewController, ListControllerDelegate, NCWidg
         
         if list?.count > 0 {
             if !showingAll && indexPath.row == TableViewConstants.baseRowCount &&  list!.count != TableViewConstants.baseRowCount + 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as UITableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as! UITableViewCell
 
                 cell.textLabel!.text = NSLocalizedString("Show All...", comment: "")
 
                 return cell
             }
             else {
-                let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.content, forIndexPath: indexPath) as CheckBoxCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.content, forIndexPath: indexPath) as! CheckBoxCell
 
                 configureListItemCell(cell, usingColor: list!.color, item: list![indexPath.row])
 
@@ -176,7 +176,7 @@ class TodayViewController: UITableViewController, ListControllerDelegate, NCWidg
             }
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewConstants.CellIdentifiers.message, forIndexPath: indexPath) as! UITableViewCell
 
             if isTodayAvailable {
                 cell.textLabel!.text = NSLocalizedString("No items in today's list", comment: "")

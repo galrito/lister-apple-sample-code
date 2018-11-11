@@ -74,6 +74,6 @@ import UIKit
     // MARK: Convenience
     
     var checkBoxLayer: CheckBoxLayer {
-        return layer as CheckBoxLayer
+        return layer as! CheckBoxLayer
     }
 }

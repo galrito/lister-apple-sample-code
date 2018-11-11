@@ -70,10 +70,10 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView {
         if list.isEmpty {
-            return tableView.makeViewWithIdentifier(TableViewConstants.ViewIdentifiers.noListItemViewIdentifier, owner: nil) as NSView
+            return tableView.makeViewWithIdentifier(TableViewConstants.ViewIdentifiers.noListItemViewIdentifier, owner: nil) as! NSView
         }
         
-        var listItemView = tableView.makeViewWithIdentifier(TableViewConstants.ViewIdentifiers.listItemViewIdentifier, owner: nil) as ListItemView
+        var listItemView = tableView.makeViewWithIdentifier(TableViewConstants.ViewIdentifiers.listItemViewIdentifier, owner: nil) as! ListItemView
         
         let item = list[row]
         
@@ -165,12 +165,12 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     
     func listItemsWithListerPasteboardType(pasteboard: NSPasteboard, refreshesItemIdentities: Bool = false) -> [ListItem]? {
         if pasteboard.canReadItemWithDataConformingToTypes([TableViewConstants.pasteboardType]) {
-            for pasteboardItem in pasteboard.pasteboardItems as [NSPasteboardItem] {
+            for pasteboardItem in pasteboard.pasteboardItems as! [NSPasteboardItem] {
                 var allItems = [ListItem]()
 
                 if let itemsData = pasteboardItem.dataForType(TableViewConstants.pasteboardType) {
                     
-                    let pasteboardListItems = NSKeyedUnarchiver.unarchiveObjectWithData(itemsData) as [ListItem]
+                    let pasteboardListItems = NSKeyedUnarchiver.unarchiveObjectWithData(itemsData) as! [ListItem]
                     
                     for item in pasteboardListItems {
                         if refreshesItemIdentities {
@@ -192,7 +192,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
         if pasteboard.canReadItemWithDataConformingToTypes([NSPasteboardTypeString]) {
             var allItems = [ListItem]()
 
-            for pasteboardItem in pasteboard.pasteboardItems as [NSPasteboardItem] {
+            for pasteboardItem in pasteboard.pasteboardItems as! [NSPasteboardItem] {
                 if let targetType = pasteboardItem.availableTypeFromArray([NSPasteboardTypeString]) {
                     if let pasteboardString = pasteboardItem.stringForType(targetType) {
                         allItems += ListFormatting.listItemsFromString(pasteboardString)
@@ -316,7 +316,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
         
         let itemIndex = list.indexOfItem(item)
 
-        let listItemView = tableView.viewAtColumn(0, row: itemIndex!, makeIfNecessary: true) as ListItemView
+        let listItemView = tableView.viewAtColumn(0, row: itemIndex!, makeIfNecessary: true) as! ListItemView
         
         let (fromIndex, toIndex) = list.toggleItem(item, preferredTargetIndex: preferredDestinationIndex)
         
@@ -337,7 +337,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     }
     
     func resetToList(aList: List) {
-        undoManager.prepareWithInvocationTarget(self).resetToList(list.copy() as List)
+        undoManager.prepareWithInvocationTarget(self).resetToList(list.copy() as! List)
         
         document.list = aList
         
@@ -348,7 +348,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     }
 
     func updateAllItemsToCompletionState(completionState: Bool) {
-        undoManager.prepareWithInvocationTarget(self).resetToList(list.copy() as List)
+        undoManager.prepareWithInvocationTarget(self).resetToList(list.copy() as! List)
 
         list.updateAllItemsToCompletionState(completionState)
         tableView.reloadData()
@@ -362,7 +362,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
         let indexOfItem = list.indexOfItem(item)
         
         tableView.beginUpdates()
-        let listItemView = tableView.viewAtColumn(0, row: indexOfItem!, makeIfNecessary: true) as ListItemView
+        let listItemView = tableView.viewAtColumn(0, row: indexOfItem!, makeIfNecessary: true) as! ListItemView
         listItemView.stringValue = text
         tableView.endUpdates()
 

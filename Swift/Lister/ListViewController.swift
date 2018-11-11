@@ -198,7 +198,7 @@ class ListViewController: UITableViewController, UITextFieldDelegate, ListColorC
             identifier = MainStoryboard.TableViewCellIdentifiers.listItemCell
         }
         
-        return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as UITableViewCell
+        return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! UITableViewCell
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -316,7 +316,7 @@ class ListViewController: UITableViewController, UITextFieldDelegate, ListColorC
             let insertedIndex = list.insertItem(item)
             
             // Update the edit row to show the check box.
-            let itemCell = tableView.cellForRowAtIndexPath(indexPath!) as ListItemCell
+            let itemCell = tableView.cellForRowAtIndexPath(indexPath!) as! ListItemCell
             itemCell.checkBox.hidden = false
             
             // Insert a new add item row into the table view.
@@ -414,10 +414,10 @@ class ListViewController: UITableViewController, UITextFieldDelegate, ListColorC
         let controller = navigationController?.navigationController ?? navigationController!
         
         controller.navigationBar.titleTextAttributes = textAttributes
-        controller.navigationBar.tintColor = textAttributes[NSForegroundColorAttributeName] as UIColor
-        controller.toolbar?.tintColor = textAttributes[NSForegroundColorAttributeName] as UIColor
+        controller.navigationBar.tintColor = textAttributes[NSForegroundColorAttributeName] as! UIColor
+        controller.toolbar?.tintColor = textAttributes[NSForegroundColorAttributeName] as! UIColor
 
-        tableView.tintColor = textAttributes[NSForegroundColorAttributeName] as UIColor
+        tableView.tintColor = textAttributes[NSForegroundColorAttributeName] as! UIColor
     }
 
     func hideViewControllerAfterListWasDeleted() {
@@ -426,10 +426,10 @@ class ListViewController: UITableViewController, UITextFieldDelegate, ListColorC
             controller.popViewControllerAnimated(true)
         }
         else {
-            let emptyViewController = storyboard?.instantiateViewControllerWithIdentifier(AppDelegate.MainStoryboard.Identifiers.emptyViewController) as UINavigationController
+            let emptyViewController = storyboard?.instantiateViewControllerWithIdentifier(AppDelegate.MainStoryboard.Identifiers.emptyViewController) as! UINavigationController
             emptyViewController.topViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
             
-            let masterViewController = splitViewController?.viewControllers.first! as UINavigationController
+            let masterViewController = splitViewController?.viewControllers.first! as! UINavigationController
             splitViewController?.viewControllers = [masterViewController, emptyViewController]
         }
     }
@@ -468,7 +468,7 @@ class ListViewController: UITableViewController, UITextFieldDelegate, ListColorC
         // For Lister we'll pick the current version and mark the conflict versions as resolved.
         NSFileVersion.removeOtherVersionsOfItemAtURL(documentURL, error: nil)
 
-        let conflictVersions = NSFileVersion.unresolvedConflictVersionsOfItemAtURL(documentURL) as [NSFileVersion]
+        let conflictVersions = NSFileVersion.unresolvedConflictVersionsOfItemAtURL(documentURL) as! [NSFileVersion]
         
         for fileVersion in conflictVersions {
             fileVersion.resolved = true

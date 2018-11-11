@@ -32,7 +32,7 @@ public class ListDocument: UIDocument {
     // MARK: Serialization / Deserialization
     
     override public func loadFromContents(contents: AnyObject, ofType typeName: String, error outError: NSErrorPointer) -> Bool {
-        if let deserializedList = NSKeyedUnarchiver.unarchiveObjectWithData(contents as NSData) as? List {
+        if let deserializedList = NSKeyedUnarchiver.unarchiveObjectWithData(contents as! NSData) as? List {
             list = deserializedList
             
             return true
