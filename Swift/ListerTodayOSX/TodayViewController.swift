@@ -139,7 +139,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
                 var error: NSError?
 
-                let newDocument = ListDocument(contentsOfURL: todayDocumentURL!, makesCustomWindowControllers: false, error: &error)
+                let newDocument = ListDocument(contentsOfURL: todayDocumentURL!, makesCustomWindowControllers: false, error: &error)!
 
                 if error != nil {
                     completionHandler?(.Failed)

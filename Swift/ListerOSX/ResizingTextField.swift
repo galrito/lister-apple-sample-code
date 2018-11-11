@@ -22,7 +22,7 @@ class ResizingTextField: NSTextField {
         let maximumSize = NSMakeSize(CGFloat.max, NSHeight(frame))
         
         // Find the size that the string occupies when displayed with the given font.
-        let boundingSize = stringValue.boundingRectWithSize(maximumSize, options: nil, attributes: [NSFontAttributeName: font])
+        let boundingSize = (stringValue as NSString).boundingRectWithSize(maximumSize, options: nil, attributes: [NSFontAttributeName: font!])
 
         let roundedWidth = CGFloat(NSWidth(boundingSize) + 10)
 

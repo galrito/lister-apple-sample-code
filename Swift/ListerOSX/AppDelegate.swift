@@ -11,6 +11,7 @@
 import Cocoa
 import ListerKitOSX
 
+@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Properties
     
@@ -54,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             dispatch_async(dispatch_get_main_queue()) {
                 let documentController = NSDocumentController.sharedDocumentController() as NSDocumentController
                 
-                documentController.openDocumentWithContentsOfURL(url, display: true) { _ in
+                documentController.openDocumentWithContentsOfURL(url!, display: true) { _ in
                     // Configuration of the document can go here...
                 }
             }

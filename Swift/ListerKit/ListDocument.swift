@@ -64,6 +64,6 @@ public class ListDocument: UIDocument {
     
     override public func updateUserActivityState(userActivity: NSUserActivity) {
         super.updateUserActivityState(userActivity)
-        userActivity.addUserInfoEntriesFromDictionary([ AppConfiguration.UserActivity.listColorUserInfoKey: list.color.toRaw() ])
+        userActivity.addUserInfoEntriesFromDictionary([ AppConfiguration.UserActivity.listColorUserInfoKey: list.color.rawValue ])
     }
 }

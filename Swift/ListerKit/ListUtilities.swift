@@ -56,7 +56,10 @@ public class ListUtilities {
     // MARK: Convenience
     
     private class func makeItemUbiquitousAtURL(sourceURL: NSURL, documentsDirectoryURL: NSURL) {
-        let destinationFileName = sourceURL.lastPathComponent
+        let destinationFileName: String! = sourceURL.lastPathComponent
+        if destinationFileName == nil {
+            return
+        }
         
         let destinationURL = documentsDirectoryURL.URLByAppendingPathComponent(destinationFileName)
         
@@ -88,14 +91,18 @@ public class ListUtilities {
             }
             
             var readError: NSError?
-            let contents = NSData.dataWithContentsOfURL(readingIntent.URL, options: .DataReadingUncached, error: &readError)
-
+            let contents = NSData(contentsOfURL: readingIntent.URL, options: .DataReadingUncached, error: &readError)
+            
             if successfulSecurityScopedResourceAccess {
                 url.stopAccessingSecurityScopedResource()
             }
             
-            if let deserializedList = NSKeyedUnarchiver.unarchiveObjectWithData(contents) as? List {
-                completionHandler(deserializedList, nil)
+            if let contents = contents {
+                if let deserializedList = NSKeyedUnarchiver.unarchiveObjectWithData(contents) as? List {
+                    completionHandler(deserializedList, nil)
+                } else {
+                    completionHandler(nil, readError)
+                }
             }
             else {
                 completionHandler(nil, readError)
@@ -161,7 +168,7 @@ public class ListUtilities {
     // MARK: Convenience
     
     private class func copyURLToDocumentsDirectory(url: NSURL) {
-        let toURL = ListUtilities.localDocumentsDirectory.URLByAppendingPathComponent(url.lastPathComponent)
+        let toURL = ListUtilities.localDocumentsDirectory.URLByAppendingPathComponent(url.lastPathComponent!)
         let fileCoordinator = NSFileCoordinator()
         var error: NSError?
         

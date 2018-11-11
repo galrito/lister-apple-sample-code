@@ -47,7 +47,7 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     }
     
     override var undoManager: NSUndoManager {
-        return document.undoManager
+        return document.undoManager!
     }
     
     // MARK: View Life Cycle
@@ -168,19 +168,20 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
             for pasteboardItem in pasteboard.pasteboardItems as [NSPasteboardItem] {
                 var allItems = [ListItem]()
 
-                let itemsData = pasteboardItem.dataForType(TableViewConstants.pasteboardType)
-                
-                let pasteboardListItems = NSKeyedUnarchiver.unarchiveObjectWithData(itemsData) as [ListItem]
-
-                for item in pasteboardListItems {
-                    if refreshesItemIdentities {
-                        item.refreshIdentity()
+                if let itemsData = pasteboardItem.dataForType(TableViewConstants.pasteboardType) {
+                    
+                    let pasteboardListItems = NSKeyedUnarchiver.unarchiveObjectWithData(itemsData) as [ListItem]
+                    
+                    for item in pasteboardListItems {
+                        if refreshesItemIdentities {
+                            item.refreshIdentity()
+                        }
+                        
+                        allItems += [item]
                     }
-
-                    allItems += [item]
+                    
+                    return allItems
                 }
-                
-                return allItems
             }
         }
         
@@ -192,11 +193,11 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
             var allItems = [ListItem]()
 
             for pasteboardItem in pasteboard.pasteboardItems as [NSPasteboardItem] {
-                let targetType = pasteboardItem.availableTypeFromArray([NSPasteboardTypeString])
-
-                let pasteboardString = pasteboardItem.stringForType(targetType)
-                
-                allItems += ListFormatting.listItemsFromString(pasteboardString)
+                if let targetType = pasteboardItem.availableTypeFromArray([NSPasteboardTypeString]) {
+                    if let pasteboardString = pasteboardItem.stringForType(targetType) {
+                        allItems += ListFormatting.listItemsFromString(pasteboardString)
+                    }
+                }
             }
             
             return allItems
@@ -478,14 +479,14 @@ class ListViewController: NSViewController, ColorPaletteViewDelegate, ListItemVi
     // MARK: ColorPaletteViewDelegate
 
     func colorPaletteViewDidChangeSelectedColor(colorPaletteView: ColorPaletteView) {
-        setColorPaletteViewColor(colorPaletteView.selectedColor.toRaw())
+        setColorPaletteViewColor(colorPaletteView.selectedColor.rawValue)
     }
 
     // To use NSUndoManager, only types representable in ObjC can be used as parameters.
     @objc func setColorPaletteViewColor(rawColor: Int) {
-        undoManager.prepareWithInvocationTarget(self).setColorPaletteViewColor(list.color.toRaw())
+        undoManager.prepareWithInvocationTarget(self).setColorPaletteViewColor(list.color.rawValue)
 
-        list.color = List.Color.fromRaw(rawColor)!
+        list.color = List.Color(rawValue: rawColor)!
         colorPaletteView.selectedColor = list.color
 
         // Update the list item views with the newly selected color.

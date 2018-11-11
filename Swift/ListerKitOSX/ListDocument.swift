@@ -27,7 +27,7 @@ public class ListDocument: NSDocument {
     
     // MARK: Initializers
 
-    public convenience init(contentsOfURL URL: NSURL, makesCustomWindowControllers: Bool, error outError: NSErrorPointer) {
+    public convenience init?(contentsOfURL URL: NSURL, makesCustomWindowControllers: Bool, error outError: NSErrorPointer) {
         self.init(contentsOfURL: URL, ofType: AppConfiguration.listerFileExtension, error: outError)
         
         self.makesCustomWindowControllers = makesCustomWindowControllers
@@ -47,7 +47,7 @@ public class ListDocument: NSDocument {
         super.makeWindowControllers()
         
         if makesCustomWindowControllers {
-            let storyboard = NSStoryboard(name: "Storyboard", bundle: nil)
+            let storyboard = NSStoryboard(name: "Storyboard", bundle: nil)!
             
             let windowController = storyboard.instantiateInitialController() as NSWindowController
             
@@ -88,6 +88,6 @@ public class ListDocument: NSDocument {
     
     override public func updateUserActivityState(userActivity: NSUserActivity) {
         super.updateUserActivityState(userActivity)
-        userActivity.addUserInfoEntriesFromDictionary([ AppConfiguration.UserActivity.listColorUserInfoKey: list.color.toRaw() ])
+        userActivity.addUserInfoEntriesFromDictionary([ AppConfiguration.UserActivity.listColorUserInfoKey: list.color.rawValue ])
     }
 }

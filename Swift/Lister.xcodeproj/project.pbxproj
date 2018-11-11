@@ -47,7 +47,6 @@
 		3E3D094C19313A8400D21A98 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3D094A193139BB00D21A98 /* AppConfiguration.swift */; };
 		3E3D094D19313A8500D21A98 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3D094A193139BB00D21A98 /* AppConfiguration.swift */; };
 		3E3F3980191066AF005813D6 /* TableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F397F191066AF005813D6 /* TableRowView.swift */; };
-		3E497FCB18FAFA2400B32837 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E497FCA18FAFA2400B32837 /* main.swift */; };
 		3E497FD218FAFA2400B32837 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E497FD118FAFA2400B32837 /* Images.xcassets */; };
 		3E541363198A16F9000DA252 /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E541362198A16F9000DA252 /* ListCoordinator.swift */; };
 		3E5F97EC1920377B00723004 /* ListColorUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFC7D9A18FB08C90012B60F /* ListColorUI.swift */; };
@@ -296,7 +295,6 @@
 		3E3F397F191066AF005813D6 /* TableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRowView.swift; sourceTree = "<group>"; };
 		3E497FC618FAFA2400B32837 /* ListerOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListerOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E497FC918FAFA2400B32837 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E497FCA18FAFA2400B32837 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3E497FD118FAFA2400B32837 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E541362198A16F9000DA252 /* ListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCoordinator.swift; path = ../ListerKit/ListCoordinator.swift; sourceTree = "<group>"; };
 		3E6198971989AE7700D66B75 /* ListUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListUtilities.swift; path = ../ListerKit/ListUtilities.swift; sourceTree = "<group>"; };
@@ -586,7 +584,6 @@
 				3E497FD118FAFA2400B32837 /* Images.xcassets */,
 				3E497FC918FAFA2400B32837 /* Info.plist */,
 				162BD21E1922BA5700848FF6 /* ListerOSX.entitlements */,
-				3E497FCA18FAFA2400B32837 /* main.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1274,7 +1271,6 @@
 				3ECADE15192D0B2800BC9826 /* ListViewController.swift in Sources */,
 				3E3F3980191066AF005813D6 /* TableRowView.swift in Sources */,
 				3ECADE11192D0B1500BC9826 /* AddItemViewController.swift in Sources */,
-				3E497FCB18FAFA2400B32837 /* main.swift in Sources */,
 				3E6F0E3C198C83DA009A4CBB /* NSColor+AppSpecific.swift in Sources */,
 				3EFC7DA418FB08C90012B60F /* ListItemView.swift in Sources */,
 				3EFC7D9F18FB08C90012B60F /* ColorPaletteView.swift in Sources */,
