@@ -16,7 +16,7 @@
 		1632760318AD468F00A97A9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1632760218AD468F00A97A9F /* main.m */; };
 		1632760918AD468F00A97A9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632760818AD468F00A97A9F /* Images.xcassets */; };
 		1632762118AD468F00A97A9F /* ListerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1632761E18AD468F00A97A9F /* ListerKit.framework */; };
-		1632762218AD468F00A97A9F /* ListerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1632761E18AD468F00A97A9F /* ListerKit.framework */; };
+		1632762218AD468F00A97A9F /* ListerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1632761E18AD468F00A97A9F /* ListerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1632762B18AD468F00A97A9F /* ListerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1632762A18AD468F00A97A9F /* ListerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1633C7321939338000A9CC5E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160808CA190B3C0200790AFC /* NotificationCenter.framework */; };
 		1633C7371939338000A9CC5E /* ListerTodayOSX.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 1633C7361939338000A9CC5E /* ListerTodayOSX.entitlements */; };
@@ -1145,7 +1145,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AAPL;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Apple Inc.";
 				TargetAttributes = {
 					163275F918AD468F00A97A9F = {
